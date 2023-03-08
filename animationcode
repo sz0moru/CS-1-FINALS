@@ -1,0 +1,52 @@
+import simplegui
+import random
+x = 0
+
+def draw_handler(canvas):
+    global x
+    global l
+    global m
+    x = x-2
+    l = random.randint(1,600)
+    m = random.randint(1,600)
+    canvas.draw_polygon([(0, 300), (400, 300), (400, 400), (0, 400)], 1, "black", "black")
+    
+    canvas.draw_polygon([(150 + x, 250), (350 + x, 250),(350+x, 350), (150 + x, 350)], 1, "black", "red")
+    
+    
+    canvas.draw_polygon([(150 + x, 250), (200 + x, 250),(200 + x, 300), (150 + x, 300)], 1, "black", "blue")
+    
+    canvas.draw_polygon([(150 - x, 130), (200 - x, 130),(200 - x, 80), (150 - x, 80)], 1, "black", "white")
+    
+    canvas.draw_polygon([(350 - x, 150), (300 - x, 150),(300 - x, 100), (350 - x, 100)], 1, "black", "white")
+    
+    #bird
+    canvas.draw_circle((120 - x ,50), 30, 2, "black", "black")
+    #bird
+    canvas.draw_circle((400 + x ,180), 30, 2, "black", "black")
+    
+    canvas.draw_circle((300 + x ,350), 30, 2, "white", "grey")
+    
+    canvas.draw_circle((200 + x ,350), 30, 2, "white", "grey")
+
+    canvas.draw_line((-50, 385), (400, 385), 10, "yellow")
+        
+    canvas.draw_line((-50, 400), (400, 400), 10, "yellow")
+    
+    canvas.draw_circle((0, 45), 50, 10, "yellow", "yellow")
+    
+    for i in range(120):
+        xdot = random.randint(1,600)
+        ydot = random.randint(1, 1445)
+        canvas.draw_line((xdot,ydot),(xdot,ydot+10),5, "blue")
+        
+    
+   
+
+
+    
+
+frame = simplegui.create_frame('animation', 400, 400)
+frame.set_canvas_background("turquoise")
+frame.set_draw_handler(draw_handler)
+frame.start()
