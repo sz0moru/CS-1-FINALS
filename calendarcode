@@ -1,0 +1,83 @@
+global eventName
+global eventMonth
+global eventDay
+global eventYear
+
+eventName = []
+eventMonth = []
+eventDay = []
+eventYear = []
+
+def validateMonth(month):
+    while int(month) < 1 or int(month) > 12:
+        month = input("Invalid month. What is the event month? ")
+        while month.isnumeric() == False:
+            month = input("Invalid month. What is the event month? ")
+        month = int(month)
+    return month
+    
+def leap_year(y):
+    if y%4==0:
+        if y%100 !=0:
+            return 1
+        elif y%400==0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+        
+def validateDay(month, day, year):
+    if month == 2:
+        while int(day) < 1 or int(day) > (28 + leap_year(year)):
+            day = input("Invalid Day. What is the event day? ")
+        while day.isnumeric() == False:
+            day = int(day)
+        return int(day)
+    elif month == 9 or month == 4 or month == 6 or month == 11:
+        while int(day) < 1 or int(day) > 30:
+            day = input("Invalid day. What is the event day? ")
+            while day.isnumeric() == False:
+                day = input("Invalid day. What is the event day? ")
+            day = int(day)
+        return day
+
+def printEvents():
+    global eventName
+    global eventMonth
+    global eventDay
+    global eventYear
+    months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    print("*********************List of Events*********************")
+    for i in range(len(eventName)):
+        print(eventName[i])
+        print("Date: " + str(months(eventMonth[i] - 1) +""+ str
+            (everDay[i])+ "," + str(eventYear[i]))
+            
+def addEvent():
+    global eventName
+    global eventMonth
+    global eventDay
+    global eventYear
+    name = input("What is the event name? ")
+    year = input("What is the event year? ")
+    while year.inumeric() == False:
+        year = input("Invalid day. What is the event day? ")
+        year = int(year)
+        month = validateMonth(month)
+        day = input("What is the event day? ")
+    while day.isnumeric() == False:
+        day = input("Invalid day. What is the event day? ")
+    day = int(day)
+    day = validateDay(month, day, year)
+    eventName += [name]
+    eventYear += [year]
+    eventMonth += [month]
+    eventDay += [day]
+    
+addEvent()
+xp = input("Do you want to enter another event? (No to stop) ")
+while xp!= "No":
+    addEvent()
+    xp = input("Do you want to enter another event? (No to stop) ")
+printEvents()
